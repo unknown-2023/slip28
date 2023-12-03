@@ -1,4 +1,43 @@
-Write a python program to implement Naive Bayes. 
+Write a python program to implement Naive Bayes.
+
+pip install scikit-learn
+
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn import datasets
+from sklearn import metrics
+
+# Load the Iris dataset
+dataset = datasets.load_iris()
+X = dataset.data
+y = dataset.target
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Initialize the Naive Bayes classifier
+nb_classifier = GaussianNB()
+
+# Train the classifier on the training data
+nb_classifier.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = nb_classifier.predict(X_test)
+
+# Evaluate the accuracy of the classifier
+accuracy = metrics.accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+# Print classification report for more detailed evaluation
+print("Classification Report:")
+print(metrics.classification_report(y_test, y_pred))
+
+# Print confusion matrix
+print("Confusion Matrix:")
+print(metrics.confusion_matrix(y_test, y_pred))
+
+-------------------------------------------------------------------------------------------
 
 from sklearn import datasets 
 from sklearn import metrics 
